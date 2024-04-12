@@ -14,7 +14,7 @@ const AppProvider = ({ children }) => {
             const data = await res.json();
             console.log(data);
 
-            if (data.Response == "True") {
+            if (data.Response === "True") {
                 setIsLoading(false)
                 setMovie(data.Search)
             } else {
@@ -31,7 +31,7 @@ const AppProvider = ({ children }) => {
         TogetMovie(API_URl);
     }, [])
 
-    return (<AppContext.Provider value="PragyaAni">{children}</AppContext.Provider>)
+    return (<AppContext.Provider value={{ isLoading, iserror, movie }}>{children}</AppContext.Provider>)
 }
 
 

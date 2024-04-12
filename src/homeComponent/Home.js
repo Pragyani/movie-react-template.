@@ -1,17 +1,11 @@
-import React, { useContext } from "react";
-import { useGlobalContext } from "../Contexts/context";
-// import { AppContext } from "../Contexts/context";
 
-function Home() {
-  
-
-    return (
+import Movie from "../MoviesApiData/movie";
+const Home =()=>{
+    return(
         <>
-            <h1>Good Morning!</h1>
-            <h3> i am a Home Page</h3>
-          
+        <h1>heloo</h1>
+        <Movie/>
         </>
     )
 }
-
 export default Home
