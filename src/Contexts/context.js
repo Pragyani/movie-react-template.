@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-const API_URl = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=titanic`
+const API_URl = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
@@ -28,8 +28,8 @@ const AppProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        TogetMovie(API_URl);
-    }, [])
+        TogetMovie(`${API_URl}&s=${query}`);
+    }, [query])
 
     return (<AppContext.Provider value={{ isLoading, iserror, movie, query,setQuery }}>{children}</AppContext.Provider>)
 }
