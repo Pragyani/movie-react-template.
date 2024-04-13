@@ -8,6 +8,8 @@ const AppProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true)
     const [movie, setMovie] = useState([])
     const [iserror, setIserror] = useState({ show: "false", message: "" })
+    const [query,setQuery]=useState("titanic")
+
     const TogetMovie = async (url) => {
         try {
             const res = await fetch(url);
@@ -25,13 +27,11 @@ const AppProvider = ({ children }) => {
         }
     }
 
-
-
     useEffect(() => {
         TogetMovie(API_URl);
     }, [])
 
-    return (<AppContext.Provider value={{ isLoading, iserror, movie }}>{children}</AppContext.Provider>)
+    return (<AppContext.Provider value={{ isLoading, iserror, movie, query,setQuery }}>{children}</AppContext.Provider>)
 }
 
 
