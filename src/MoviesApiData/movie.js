@@ -17,9 +17,9 @@ function Movie() {
 
                         return <NavLink to={`movie/${imdbID}`} key={imdbID}>
                             <div className="card">
-                                
+
                                 <div className="card-info">
-                                    <h2>{moviename.length >= 15 ? `${moviename}...`: moviename}</h2>
+                                    <h2>{moviename.length >= 15 ? `${moviename}...` : moviename}</h2>
                                     <img src={Poster} alt="logo" />
                                 </div>
                             </div>
