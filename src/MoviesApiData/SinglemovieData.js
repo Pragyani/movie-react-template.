@@ -1,15 +1,43 @@
 import React from "react";
-import Movie from "./movie";
 import { useParams } from "react-router-dom";
+import { API_URl } from "../Contexts/context";
 
-function MovieData() {
-
+const MovieData = () => {
     const { id } = useParams();
+    const [isLoading, setIsLoading] = useState(true)
+    const [movie, setMovie] = useState([])
+    
+    const TogetMovie = async (url) => {
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+            console.log(data);
 
-    return (
+            if (data.Response === "True") {
+                setIsLoading(false)
+                setMovie(data.Search)
+            } else {
+                setIserror({ show: true, message: data.Error })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+
+       let timeOut = setTimeout(()=>{
+            TogetMovie(`${API_URl}&i=${id}`);
+        },500)
+        return ()=>clearTimeout(timeOut)   
+        }, [id])
+    return(
         <>
-            <h1>DATA OF THE MOVIE ,{id}</h1>
-        </>
+
+            </>
     )
-}
-export default MovieData
+    
+   
+  };
+  
+  export default MovieData;
