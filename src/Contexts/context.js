@@ -28,7 +28,13 @@ const AppProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        TogetMovie(`${API_URl}&s=${query}`);
+
+       let timeOut = setTimeout(()=>{
+            TogetMovie(`${API_URl}&s=${query}`);
+        },600)
+
+        return ()=>clearTimeout(timeOut)
+        
     }, [query])
 
     return (<AppContext.Provider value={{ isLoading, iserror, movie, query,setQuery }}>{children}</AppContext.Provider>)
