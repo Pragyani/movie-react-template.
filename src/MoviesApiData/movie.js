@@ -4,7 +4,16 @@ import { NavLink } from "react-router-dom";
 
 function Movie() {
 
-    const { movie } = useGlobalContext();
+    const { movie,isLoading } = useGlobalContext();
+    
+    if(isLoading){
+        return(
+            <div>
+                <div className="loading">loading...</div>
+
+            </div>
+        )
+    }
     return (
         <>
             <section className="movie-page">
@@ -14,6 +23,7 @@ function Movie() {
                         const { imdbID, Title, Poster } = currVal
 
                         const moviename = Title.substring(0, 18)
+                        
 
                         return <NavLink to={`movie/${imdbID}`} key={imdbID}>
                             <div className="card">

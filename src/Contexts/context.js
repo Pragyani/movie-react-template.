@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-const API_URl = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`
+ export const API_URl = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
@@ -11,6 +11,7 @@ const AppProvider = ({ children }) => {
     const [query,setQuery]=useState("titanic")
 
     const TogetMovie = async (url) => {
+    setIsLoading(true)
         try {
             const res = await fetch(url);
             const data = await res.json();
@@ -19,8 +20,9 @@ const AppProvider = ({ children }) => {
             if (data.Response === "True") {
                 setIsLoading(false)
                 setMovie(data.Search)
+                setIserror({ show: false, message: "" })
             } else {
-                setIserror({ show: true, message: data.error })
+                setIserror({ show: true, message: data.Error })
             }
         } catch (error) {
             console.log(error);
@@ -31,7 +33,7 @@ const AppProvider = ({ children }) => {
 
        let timeOut = setTimeout(()=>{
             TogetMovie(`${API_URl}&s=${query}`);
-        },600)
+        },500)
 
         return ()=>clearTimeout(timeOut)
         
