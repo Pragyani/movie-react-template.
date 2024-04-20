@@ -3,7 +3,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './homeComponent/Home';
 import MovieData from './MoviesApiData/SinglemovieData';
-
+import "./App.css";
 
 
 function App() {
